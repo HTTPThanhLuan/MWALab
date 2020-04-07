@@ -1,0 +1,60 @@
+
+<%-include('layouts/head.ejs')%>
+
+<body>
+
+    <!-- Navigation -->
+    <%- include('layouts/nav.ejs')%>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+         <%- include('layouts/sidebar.ejs')%>
+            <!-- /.col-lg-3 -->
+
+            <div class="col-lg-9">
+
+               <%- include('layouts/carousel.ejs')%>
+
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Command</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                         <% for( let c of cart.products) { %>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td><%= c.title %></td>
+                            <td><%= c.price %></td>
+                            <td><%= c.quantity %></td>
+                            <td><%= c.description %></td>
+                            <td>
+                                <form action="/card/remove" method="POST">
+                                  <input type="hidden" value="<%= c._id %>" name='id'/>
+                                  <input type="submit" value="Remove" />
+                                </form>
+
+                            </td>
+                          </tr>
+                          <% } %>
+                         
+                        </tbody>
+                      </table> 
+                    <h6>Total price: <%= cart.totalPrice %></h6>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <% if(cart.products.length!=0) {%>
+                    <p><a href="/card/order">Check out</a></p>
+                    <%}%>
+                </div>
+                <!-- /.row -->
+    <%- include('layouts/footer.ejs')%>

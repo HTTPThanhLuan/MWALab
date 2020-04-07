@@ -1,0 +1,38 @@
+
+<%-include('layouts/head.ejs')%>
+
+<body>
+
+    <!-- Navigation -->
+    <%- include('layouts/nav.ejs')%>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+         <%- include('layouts/sidebar.ejs')%>
+            <!-- /.col-lg-3 -->
+
+            <div class="col-lg-9">
+
+               <%- include('layouts/carousel.ejs')%>
+
+                <div class="row">
+                
+                     <form action="/card/order" method="POST">                  
+                        <p>
+                            <label>Address:</label>
+                            <input type="text" name="address" />
+                        </p>
+                        <p>
+                            <label>Phone:</label>
+                            <input type="text" name="phone" />
+                        </p>
+                        
+                        <button type="submit">Submit</button>
+                    </form>              
+
+                </div>
+                <!-- /.row -->
+    <%- include('layouts/footer.ejs')%>

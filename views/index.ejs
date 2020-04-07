@@ -1,0 +1,52 @@
+
+<%-include('layouts/head.ejs')%>
+
+<body>
+
+    <!-- Navigation -->
+    <%- include('layouts/nav.ejs')%>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+         <%- include('layouts/sidebar.ejs')%>
+            <!-- /.col-lg-3 -->
+
+            <div class="col-lg-9">
+
+               <%- include('layouts/carousel.ejs')%>
+
+                <div class="row">
+                    <% for (let p of products ) { %>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="<%if(p.imageUrl){%> <%=p.imageUrl%> <%} else {%>http://placehold.it/700x400<%}%>" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#"><%=p.title%></a>
+                                </h4>
+                                <h5>$<%=p.price%></h5>
+                                <p class="card-text"><%=p.description%></p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            
+                                <form method="POST" action="/card">
+                                    <input type="hidden" value="<%= p._id %>" name="id" >
+                                    <input type="submit" value="Add cart"/>
+                                </form>
+                                <a href="/admin/<%=p._id%>">Edit</a>
+                                <form method="POST" action="/admin/delete">
+                                    <input type="hidden" value="<%=p._id%>" name="id" />
+                                    <input type="submit" value="delete"/>
+                                 </form>
+                                <a href="/admin/detail/<%=p._id%>">View Detail</a>
+                            </div>
+                        </div>
+                    </div>                  
+                   <%} %>
+                </div>
+                <!-- /.row -->
+    <%- include('layouts/footer.ejs')%>

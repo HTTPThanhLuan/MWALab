@@ -1,0 +1,54 @@
+
+<%-include('layouts/head.ejs')%>
+
+<body>
+
+    <!-- Navigation -->
+    <%- include('layouts/nav.ejs')%>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+         <%- include('layouts/sidebar.ejs')%>
+            <!-- /.col-lg-3 -->
+
+            <div class="col-lg-9">
+
+               <%- include('layouts/carousel.ejs')%>
+
+                <div class="row">
+                    <% if(pro._id) {%>
+                     <form action="/admin/<%=pro._id%>" method="POST">                  
+                    <%} else {%>
+                        <form action="/admin" method="POST">
+                     <%}%>
+                       
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input class="form-control"  name="title" value="<%=pro.title%>" >
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                           
+                            <input class="form-control" type="number" name="price" value="<%=pro.price%>" />
+                        </div>
+                        <div class="form-group">
+                            <label for="imageURL">Image URL</label>
+                            <input class="form-control" type="text" name="imageUrl" value="<%=pro.imageUrl%>"/> 
+                           
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" name="description"><%=pro.description%></textarea>
+                          
+                        </div>
+                        <button type="submit">Submit</button>
+
+
+                    </form>              
+
+                </div>
+                <!-- /.row -->
+    <%- include('layouts/footer.ejs')%>

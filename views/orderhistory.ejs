@@ -1,0 +1,75 @@
+
+<%-include('layouts/head.ejs')%>
+
+<body>
+
+    <!-- Navigation -->
+    <%- include('layouts/nav.ejs')%>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+         <%- include('layouts/sidebar.ejs')%>
+            <!-- /.col-lg-3 -->
+
+            <div class="col-lg-9">
+
+               <%- include('layouts/carousel.ejs')%>
+
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Price</th>
+                          
+                          </tr>
+                        </thead>
+                        <tbody>
+                         <% for( let i=0; i< orders.length; i++) { o = orders[i] %>
+                          <tr class="row-pa">
+                            <td scope="row"><%=i+1%></td>
+                            <td><%= o.address %></td>
+                            <td><%= o.phone %></td>
+                            <td><%= o.date.toDateString() %></td>
+                            <td><%= o.totalPrice %></td>
+                            
+                          </tr>
+                          <tr>
+                            <td colspan="5">         
+                                  <table class="table-plain">
+                                    <tr>
+                                      <th></th>
+                                      <th>title</th>
+                                      <th>price</th>
+                                      <th>quantity</th>
+                                      <th>description</th>
+                                    </tr>
+                                    <% for (let j=0; j< o.products.length; j ++) { pro = o.products[j] %>
+                     
+                                     <tr>
+                                      <td><img width="50px" src='<%= pro.imageUrl %>'/></td>
+                                      <td><%= pro.title %></td>
+                                      <td><%= pro.price %></td>
+                                      <td><%= pro.quantity %></td>
+                                      <td><%= pro.description %></td>
+                                     </tr>
+                                     <% } %>
+                                  </table>
+                            </td>                         
+                             
+                          </tr> 
+                         
+                         <% } %>
+                         
+                        </tbody>
+                      </table> 
+                   
+                </div>
+                <!-- /.row -->
+    <%- include('layouts/footer.ejs')%>
