@@ -10,7 +10,7 @@ exports.OrderHistory = async function(req, res, next){
 },
 
 exports.Save = async (req, res, next)=>{
-      console.log(req.user);
+    
     let user = new userModel(req.body.email, req.body.password);
     try{
         await user.save(); 
