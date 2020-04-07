@@ -2,10 +2,10 @@ const mongodbconnection = require("../service/mongodbConnection");
 const objectId = require("mongodb").ObjectID;
 
 module.exports = class User{
-    constructor(email, pass){
+    constructor(email, pass,id){
         this.email = email,
-        this.password = pass
-      
+        this.password = pass,
+        this._id = id
     }
 
     save(){
