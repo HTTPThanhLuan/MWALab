@@ -1,5 +1,4 @@
 const express = require('express');
-
 const bodyParser = require('body-parser');
 const productRouters = require('./routers/product');
 const cardRouters = require('./routers/card');
@@ -16,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use((req, res, next) =>{
-    userModel.findById('5e8a4b05e37a3d28b83a4cbc').then((user)=>{
+    userModel.findById('5e8bf7b8f06d9d003ff5136d').then((user)=>{
         req.user= user;
         next();
     }).catch(err=> console.log(err))
@@ -31,7 +30,6 @@ app.use('/', homepageRouters);
 mongodbConnect.connectMongoDB(startServer);
 
 function startServer(){
- 
     app.listen(app.get('port'), function(){
         console.log('This server is listening on 3000 port....');
     })
@@ -46,6 +44,6 @@ app.use((req,res,next)=>{
 
 //handle error;
 
-// app.use((err,req,res,next)=>{
-//     res.status(500).send("Server ERROR");
-// })
+//app.use((err,req,res,next)=>{
+  //  res.status(500).send("Server ERROR");
+//})
