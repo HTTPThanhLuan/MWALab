@@ -9,7 +9,7 @@ const mongodbConnect = require('./service/mongodbConnection');
 const userModel = require('./models/user');
 
 const app = express();
-
+app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.urlencoded({ extended: true }));
 //Provide static content
 app.use(express.static(path.join(__dirname,'public')));
@@ -26,7 +26,7 @@ app.use('/card',cardRouters);
 app.use('/admin',productRouters);
 app.use('/users',usersRouters);
 app.use('/', homepageRouters);
-app.set('port', process.env.PORT || 3000);
+
 mongodbConnect.connectMongoDB(startServer);
 
 function startServer(){
