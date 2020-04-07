@@ -11,7 +11,9 @@ exports.getDB=()=>{
  }
 }
  function createConnection(callback){
-    mongoClient.connect("mongodb://localhost:27017",{useNewUrlParser:true, useUnifiedTopology: true })
+     const con = process.env.dbconnectionstringLocal || process.env.connectionstring;
+    console.log(con);
+    mongoClient.connect(con,{useNewUrlParser:true, useUnifiedTopology: true })
     .then((client)=>{
       _db = client.db("onlineshoping");    
        callback();
