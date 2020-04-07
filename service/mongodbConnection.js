@@ -1,5 +1,5 @@
 const mongoClient = require('mongodb').MongoClient;
-
+require('dotenv').config(); 
 let _db;
 
 exports.getDB=()=>{
@@ -11,7 +11,7 @@ exports.getDB=()=>{
  }
 }
  function createConnection(callback){
-     const con = process.env.dbconnectionstringLocal || process.env.connectionstring;
+    const con = process.env.dbconnectionstringLocal || process.env.connectionstring;
     console.log(con);
     mongoClient.connect(con,{useNewUrlParser:true, useUnifiedTopology: true })
     .then((client)=>{
