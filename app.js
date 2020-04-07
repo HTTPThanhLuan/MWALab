@@ -26,11 +26,11 @@ app.use('/card',cardRouters);
 app.use('/admin',productRouters);
 app.use('/users',usersRouters);
 app.use('/', homepageRouters);
-
+app.set('port', process.env.PORT || 3000);
 mongodbConnect.connectMongoDB(startServer);
 
 function startServer(){
-    app.listen(3000, function(){
+    app.listen(app.get('port'), function(){
         console.log('This server is listening on 3000 port....');
     })
 }
